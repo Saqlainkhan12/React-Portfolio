@@ -1,7 +1,7 @@
 import AuroraBackground from "./components/background/AuroraBackground";
 import FloatingOrbs from "./components/background/FloatingOrbs";
 import ThemePanel from "./components/background/ThemePanel";
-
+import CursorBubble from "./components/background/CursorBubble";
 import Navbar from "./components/sections/Navbar";
 import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
@@ -26,6 +26,7 @@ function App() {
       <AuroraBackground />
 
       <FloatingOrbs />
+      <CursorBubble />
 
       {/* Theme Switcher */}
 
