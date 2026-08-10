@@ -1149,3 +1149,91 @@ contain:layout style paint;
 /*=========================================
 END OF HERO
 =========================================*/
+/*=========================================
+VERCEL / VIEWPORT OVERFLOW FIX
+=========================================*/
+
+.hero,
+.hero-container,
+.hero-left,
+.hero-right,
+.hero-card{
+  min-width:0;
+  max-width:100%;
+}
+
+.hero-container{
+  width:min(92%,1400px);
+  overflow:visible;
+}
+
+.hero-left h1,
+.hero-left p{
+  max-width:100%;
+  overflow-wrap:break-word;
+}
+
+.hero-card{
+  width:min(470px,100%);
+}
+
+.hero-right{
+  min-width:0;
+  width:100%;
+}
+
+@media(max-width:1200px){
+
+  .hero-container{
+    width:92%;
+    gap:50px;
+    grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
+  }
+
+  .hero-card{
+    width:min(430px,100%);
+  }
+
+}
+
+@media(max-width:1100px){
+
+  .hero-container{
+    width:92%;
+    grid-template-columns:minmax(0,1fr);
+  }
+
+  .hero-right{
+    width:100%;
+  }
+
+  .hero-card{
+    width:min(430px,100%);
+  }
+
+}
+
+@media(max-width:768px){
+
+  .hero-container{
+    width:92%;
+    max-width:100%;
+  }
+
+  .hero-card{
+    width:min(340px,100%);
+  }
+
+}
+
+@media(max-width:480px){
+
+  .hero-container{
+    width:94%;
+  }
+
+  .hero-card{
+    width:min(300px,100%);
+  }
+
+}
