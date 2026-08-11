@@ -1,248 +1,253 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap");
 
-/*==================================
-RESET
-==================================*/
+/*==================================*
+* RESET
+*==================================*/
 
 *,
 *::before,
-*::after{
-
-margin:0;
-padding:0;
-box-sizing:border-box;
-
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-html{
+/*==================================*
+* HTML
+*==================================*/
 
-scroll-behavior:smooth;
-
+html {
+  scroll-behavior: smooth;
+  width: 100%;
+  min-height: 100%;
 }
 
-body{
+/*==================================*
+* BODY
+*==================================*/
 
-font-family:"Outfit",sans-serif;
+body {
+  width: 100%;
+  min-height: 100vh;
 
-background:var(--bg);
+  font-family: "Outfit", sans-serif;
 
-color:var(--text);
+  background: var(--bg);
+  color: var(--text);
 
-overflow-x:hidden;
+  overflow-x: hidden;
 
-min-height:100vh;
+  text-rendering: optimizeLegibility;
 
-text-rendering:optimizeLegibility;
-
--webkit-font-smoothing:antialiased;
-
--moz-osx-font-smoothing:grayscale;
-
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/*==================================
-ROOT
-==================================*/
+/*==================================*
+* ROOT
+*==================================*/
 
-#root{
+#root {
+  width: 100%;
+  min-height: 100vh;
 
-width:100%;
-min-height:100vh;
+  position: relative;
 
-position:relative;
-
-overflow:hidden;
-
+  /* Do NOT use overflow:hidden here.
+     Fixed background/cursor elements need
+     to remain attached to the viewport. */
+  overflow: visible;
 }
 
-/*==================================
-IMAGES
-==================================*/
+/*==================================*
+* IMAGES
+*==================================*/
 
-img{
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 
-display:block;
-
-max-width:100%;
-
-user-select:none;
-
-pointer-events:none;
-
+  user-select: none;
+  pointer-events: none;
 }
 
-/*==================================
-LINKS
-==================================*/
+/*==================================*
+* LINKS
+*==================================*/
 
-a{
-
-text-decoration:none;
-
-color:inherit;
-
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
-/*==================================
-BUTTONS
-==================================*/
+/*==================================*
+* BUTTONS
+*==================================*/
 
-button{
+button {
+  font-family: inherit;
 
-font-family:inherit;
+  border: none;
+  outline: none;
 
-border:none;
+  cursor: pointer;
 
-outline:none;
-
-cursor:pointer;
-
-background:none;
-
+  background: none;
 }
 
-/*==================================
-INPUT
-==================================*/
+/*==================================*
+* INPUTS
+*==================================*/
 
 input,
-textarea{
-
-font-family:inherit;
-
-outline:none;
-
+textarea {
+  font-family: inherit;
+  outline: none;
 }
 
-/*==================================
-LIST
-==================================*/
+/*==================================*
+* LISTS
+*==================================*/
 
-ul{
-
-list-style:none;
-
+ul,
+ol {
+  list-style: none;
 }
 
-/*==================================
-SCROLLBAR
-==================================*/
+/*==================================*
+* SCROLLBAR
+*==================================*/
 
-::-webkit-scrollbar{
-
-width:10px;
-
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-::-webkit-scrollbar-track{
-
-background:#050816;
-
+::-webkit-scrollbar-track {
+  background: #050816;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    var(--primary),
+    var(--secondary)
+  );
 
-background:linear-gradient(
-
-180deg,
-
-var(--primary),
-
-var(--secondary)
-
-);
-
-border-radius:100px;
-
+  border-radius: 100px;
 }
 
-::-webkit-scrollbar-thumb:hover{
-
-background:linear-gradient(
-
-180deg,
-
-var(--secondary),
-
-var(--accent)
-
-);
-
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    var(--secondary),
+    var(--accent)
+  );
 }
 
-/*==================================
-SELECTION
-==================================*/
+/*==================================*
+* SELECTION
+*==================================*/
 
-::selection{
-
-background:var(--primary);
-
-color:#000;
-
+::selection {
+  background: var(--primary);
+  color: #000;
 }
 
-/*==================================
-CONTAINER
-==================================*/
+/*==================================*
+* CONTAINER
+*==================================*/
 
-.container{
+.container {
+  width: min(92%, 1400px);
+  max-width: 1400px;
 
-width:min(92%,1400px);
-
-margin:auto;
-
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/*==================================
-SECTION
-==================================*/
+/*==================================*
+* SECTION
+*==================================*/
 
-section{
+section {
+  position: relative;
+  width: 100%;
 
-position:relative;
-
-padding:120px 0;
-
+  padding: 120px 0;
 }
 
-/*==================================
-HEADINGS
-==================================*/
+/*==================================*
+* HEADINGS
+*==================================*/
 
 h1,
 h2,
 h3,
 h4,
 h5,
-h6{
-
-font-weight:700;
-
-line-height:1.1;
-
+h6 {
+  font-weight: 700;
+  line-height: 1.1;
 }
 
-/*==================================
-PARAGRAPH
-==================================*/
+/*==================================*
+* PARAGRAPHS
+*==================================*/
 
-p{
-
-line-height:1.8;
-
-color:var(--text-secondary);
-
+p {
+  line-height: 1.8;
+  color: var(--text-secondary);
 }
 
-/*==================================
-PERFORMANCE
-==================================*/
+/*==================================*
+* FORM ELEMENTS
+*==================================*/
 
-body,
+button,
+input,
+textarea {
+  font-size: inherit;
+}
+
+/*==================================*
+* RESPONSIVE SAFETY
+*==================================*/
+
+html,
+body {
+  max-width: 100%;
+}
+
 section,
-div{
+.container {
+  min-width: 0;
+}
 
-will-change:transform;
+/*==================================*
+* MOBILE
+*==================================*/
 
+@media (max-width: 768px) {
+  section {
+    padding: 100px 0;
+  }
+
+  .container {
+    width: 92%;
+  }
+}
+
+/*==================================*
+* SMALL MOBILE
+*==================================*/
+
+@media (max-width: 480px) {
+  section {
+    padding: 80px 0;
+  }
+
+  .container {
+    width: 94%;
+  }
 }
