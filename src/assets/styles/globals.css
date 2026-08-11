@@ -251,3 +251,7 @@ section,
     width: 94%;
   }
 }
+/* Vercel display scaling */
+#root {
+  zoom: 0.67;
+}
