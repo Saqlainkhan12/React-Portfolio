@@ -12,15 +12,7 @@ FaTimes,
 
 } from "react-icons/fa";
 
-function Navbar(){
-
-const [open,setOpen]=useState(false);
-
-const [active,setActive]=useState("home");
-
-const [scroll,setScroll]=useState(false);
-
-const links=[
+const NAVBAR_LINKS=[
 
 "home",
 
@@ -34,13 +26,21 @@ const links=[
 
 ];
 
+function Navbar(){
+
+const [open,setOpen]=useState(false);
+
+const [active,setActive]=useState("home");
+
+const [scroll,setScroll]=useState(false);
+
 useEffect(()=>{
 
 const handleScroll=()=>{
 
 setScroll(window.scrollY>40);
 
-links.forEach(id=>{
+NAVBAR_LINKS.forEach(id=>{
 
 const section=document.getElementById(id);
 
@@ -137,7 +137,7 @@ className={open?"open":""}
 >
         {
 
-          links.map(link=>(
+          NAVBAR_LINKS.map(link=>(
 
             <a
 
