@@ -1,6 +1,5 @@
 import AuroraBackground from "./components/background/AuroraBackground";
 import FloatingOrbs from "./components/background/FloatingOrbs";
-import ThemePanel from "./components/background/ThemePanel";
 import CursorBubble from "./components/background/CursorBubble";
 import ScrollToTop from "./components/ui/ScrollToTop";
 import Navbar from "./components/sections/Navbar";
@@ -25,7 +24,6 @@ function App() {
       <CursorBubble />
 
       {/* Floating Controls */}
-      <ThemePanel />
       <ScrollToTop />
 
       {/* Navigation */}

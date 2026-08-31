@@ -1,21 +1,23 @@
 /*=========================================
-THEME TOGGLE
+THEME WRAPPER & TOGGLE (INSIDE NAVBAR)
 =========================================*/
 
+.theme-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
 .theme-toggle {
-  position: fixed;
-  top: 24px;
-  right: 28px;
-  width: 48px;
-  height: 48px;
+  width: 42px;
+  height: 42px;
   border: none;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 9999;
-  font-size: 20px;
+  font-size: 18px;
   color: #fff;
   background: linear-gradient(
     135deg,
@@ -23,114 +25,131 @@ THEME TOGGLE
     var(--secondary)
   );
   box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.35),
-    0 0 25px rgba(79, 209, 255, 0.25);
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    0 0 20px rgba(79, 209, 255, 0.25);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
 }
 
 .theme-toggle:hover {
   transform: scale(1.08) rotate(15deg);
-  box-shadow: 0 15px 40px rgba(79, 209, 255, 0.45);
+  box-shadow: 0 10px 30px rgba(79, 209, 255, 0.45);
+}
+
+.theme-toggle svg {
+  font-size: 18px;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.45));
 }
 
 /*=========================================
-PANEL
+PANEL DROPDOWN
 =========================================*/
 
 .theme-panel {
-  position: fixed;
-  top: 80px;
-  right: -320px;
-  width: 240px;
-  padding: 24px;
-  border-radius: 24px;
-  background: rgba(8, 12, 24, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
-  transition: right 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-  z-index: 9998;
+  position: absolute;
+  top: 54px;
+  right: 0;
+  width: 220px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(8, 12, 24, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px) scale(0.95);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 1001;
 }
 
 .theme-panel.open {
-  right: 28px;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
 }
-
 
 /*=========================================
 TITLE
 =========================================*/
 
-.theme-panel h3{
+.theme-title {
+  font-size: 16px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
-font-size:20px;
-
-margin-bottom:22px;
-
-font-weight:700;
-
-color:#fff;
-
+.theme-title svg {
+  font-size: 12px;
+  opacity: 0.6;
 }
 
 /*=========================================
 BUTTON
 =========================================*/
 
-.theme-btn{
-
-width:100%;
-
-display:flex;
-
-align-items:center;
-
-gap:16px;
-
-padding:14px;
-
-margin-bottom:14px;
-
-border:none;
-
-outline:none;
-
-cursor:pointer;
-
-border-radius:16px;
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(255,255,255,.06);
-
-color:#fff;
-
-font-size:15px;
-
-font-weight:600;
-
-text-transform:capitalize;
-
-transition:.35s;
-
+.theme-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: capitalize;
+  transition: all 0.25s ease;
 }
 
-.theme-btn:last-child{
-
-margin-bottom:0;
-
+.theme-btn:last-child {
+  margin-bottom: 0;
 }
 
-.theme-btn:hover{
-
-background:rgba(255,255,255,.10);
-
-transform:translateX(-8px);
-
-border-color:rgba(255,255,255,.18);
-
+.theme-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(4px);
+  border-color: rgba(255, 255, 255, 0.2);
 }
+
+.theme-btn.active {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: var(--primary);
+}
+
+/*=========================================
+COLOR PREVIEW
+=========================================*/
+
+.theme-preview {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+.theme-name {
+  flex: 1;
+  text-align: left;
+}
+
+.theme-check {
+  font-size: 12px;
+  color: var(--primary);
+}
+
 
 /*=========================================
 COLOR PREVIEW

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { smoothScrollTo } from "../../utils/scroll";
+import ThemePanel from "../background/ThemePanel";
 
 const NAVBAR_LINKS = ["home", "about", "skills", "projects", "contact"];
 
@@ -56,37 +57,46 @@ function Navbar() {
       className={`navbar ${scroll ? "glass-nav" : ""}`}
     >
       <div className="nav-container">
-        <a
-          href="#home"
-          className="logo"
-          onClick={(e) => handleLinkClick(e, "home")}
-        >
-          SK
-        </a>
+        {/* LEFT: Logo + Navigation Links */}
+        <div className="nav-left">
+          <a
+            href="#home"
+            className="logo"
+            onClick={(e) => handleLinkClick(e, "home")}
+          >
+            SK
+          </a>
 
-        <nav className={open ? "open" : ""}>
-          {NAVBAR_LINKS.map((link) => (
-            <a
-              key={link}
-              href={`#${link}`}
-              className={active === link ? "active" : ""}
-              onClick={(e) => handleLinkClick(e, link)}
-            >
-              {link}
-            </a>
-          ))}
-        </nav>
+          <nav className={open ? "open" : ""}>
+            {NAVBAR_LINKS.map((link) => (
+              <a
+                key={link}
+                href={`#${link}`}
+                className={active === link ? "active" : ""}
+                onClick={(e) => handleLinkClick(e, link)}
+              >
+                {link}
+              </a>
+            ))}
+          </nav>
+        </div>
 
-        <button
-          className="menu-btn"
-          onClick={() => setOpen(!open)}
-          aria-label="Menu"
-        >
-          {open ? <FaTimes /> : <FaBars />}
-        </button>
+        {/* RIGHT: Theme Switcher & Mobile Menu Button */}
+        <div className="nav-right">
+          <ThemePanel />
+
+          <button
+            className="menu-btn"
+            onClick={() => setOpen(!open)}
+            aria-label="Menu"
+          >
+            {open ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
       </div>
     </motion.header>
   );
 }
 
-export default Navbar;
+export default Navbar;
+

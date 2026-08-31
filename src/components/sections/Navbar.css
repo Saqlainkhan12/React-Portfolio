@@ -2,42 +2,25 @@
 PREMIUM NAVBAR
 =========================================*/
 
-.navbar{
-
-position:fixed;
-
-top:20px;
-
-left:50%;
-
-transform:translateX(-50%);
-
-width:min(1280px,96%);
-
-z-index:1000;
-
-transition:.35s;
-
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1200px, 92%);
+  z-index: 1000;
+  transition: background 0.35s ease, box-shadow 0.35s ease;
 }
 
-.glass-nav{
-
-background:rgba(10,14,28,.60);
-
-backdrop-filter:blur(26px);
-
--webkit-backdrop-filter:blur(26px);
-
-border:1px solid rgba(255,255,255,.08);
-
-border-radius:24px;
-
-box-shadow:
-
-0 20px 60px rgba(0,0,0,.35),
-
-0 0 40px rgba(79,209,255,.08);
-
+.glass-nav {
+  background: rgba(10, 14, 28, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 0 40px rgba(79, 209, 255, 0.08);
 }
 
 /*=========================================
@@ -49,13 +32,18 @@ CONTAINER
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 28px;
-  padding-right: 90px; /* Clearance for the theme switcher button */
+  padding: 10px 24px;
 }
 
 /*=========================================
-LOGO
+LEFT SECTION (LOGO + NAV)
 =========================================*/
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
 
 .logo {
   font-size: 28px;
@@ -76,15 +64,13 @@ LOGO
 }
 
 /*=========================================
-NAVIGATION
+NAVIGATION LINKS
 =========================================*/
 
 nav {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 28px;
-  transform: none;
+  gap: 26px;
 }
 
 nav a {
@@ -99,119 +85,124 @@ nav a {
   padding: 6px 4px;
 }
 
-/*=========================================
-HOVER
-=========================================*/
-
-nav a:hover{
-
-color:#fff;
-
+nav a:hover,
+nav a.active {
+  color: #fff;
 }
 
-nav a.active{
-
-color:#fff;
-
-}
-
-nav a::after{
-
-content:"";
-
-position:absolute;
-
-left:50%;
-
-bottom:-7px;
-
-transform:translateX(-50%);
-
-width:0;
-
-height:3px;
-
-border-radius:999px;
-
-background:
-
-linear-gradient(
-
-90deg,
-
-var(--primary),
-
-var(--secondary)
-
-);
-
-transition:.35s;
-
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  transition: width 0.3s ease;
 }
 
 nav a:hover::after,
-
-nav a.active::after{
-
-width:100%;
-
+nav a.active::after {
+  width: 100%;
 }
 
 /*=========================================
-MENU BUTTON
+RIGHT ACTIONS (THEME + MENU)
 =========================================*/
 
-.menu-btn{
-
-justify-self:end;
-
-display:none;
-
-justify-content:center;
-
-align-items:center;
-
-width:48px;
-
-height:48px;
-
-border:none;
-
-outline:none;
-
-cursor:pointer;
-
-border-radius:50%;
-
-background:rgba(255,255,255,.06);
-
-border:1px solid rgba(255,255,255,.08);
-
-color:#fff;
-
-font-size:20px;
-
-transition:.35s;
-
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.menu-btn:hover{
-
-background:
-
-linear-gradient(
-
-135deg,
-
-var(--primary),
-
-var(--secondary)
-
-);
-
-transform:scale(1.06);
-
+.menu-btn {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 18px;
+  transition: 0.3s;
 }
+
+.menu-btn:hover {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  transform: scale(1.06);
+}
+
+/*=========================================
+RESPONSIVE: TABLET / MOBILE
+=========================================*/
+
+@media (max-width: 992px) {
+  .menu-btn {
+    display: flex;
+  }
+
+  nav {
+    position: absolute;
+    top: 76px;
+    left: 0;
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: rgba(10, 14, 28, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-16px);
+    transition: all 0.35s ease;
+    z-index: 1000;
+  }
+
+  nav.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    top: 12px;
+    width: 94%;
+  }
+
+  .nav-container {
+    padding: 10px 16px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+}
+
+/*=========================================
+PERFORMANCE
+=========================================*/
+
+.navbar,
+.nav-container,
+nav,
+.menu-btn {
+  will-change: transform, opacity;
+}
+
 
 /*=========================================
 TABLET
