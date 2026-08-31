@@ -2,6 +2,7 @@ import AuroraBackground from "./components/background/AuroraBackground";
 import FloatingOrbs from "./components/background/FloatingOrbs";
 import ThemePanel from "./components/background/ThemePanel";
 import CursorBubble from "./components/background/CursorBubble";
+import ScrollToTop from "./components/ui/ScrollToTop";
 import Navbar from "./components/sections/Navbar";
 import Hero from "./components/sections/Hero";
 import About from "./components/sections/About";
@@ -16,50 +17,33 @@ import "./assets/styles/utilities.css";
 import "./assets/styles/animations.css";
 
 function App() {
-
   return (
-
     <>
-
       {/* Background */}
-
       <AuroraBackground />
-
       <FloatingOrbs />
       <CursorBubble />
 
-      {/* Theme Switcher */}
-
+      {/* Floating Controls */}
       <ThemePanel />
+      <ScrollToTop />
 
       {/* Navigation */}
-
       <Navbar />
 
       {/* Main Content */}
-
       <main>
-
         <Hero />
-
         <About />
-
         <Skills />
-
         <Projects />
-
         <Contact />
-
       </main>
 
       {/* Footer */}
-
       <Footer />
-
     </>
-
   );
-
 }
 
 export default App;

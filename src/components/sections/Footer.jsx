@@ -1,87 +1,58 @@
 import "./Footer.css";
-
 import {
-
-FaGithub,
-FaLinkedin,
-FaArrowUp,
-FaHeart,
-
+  FaGithub,
+  FaLinkedin,
+  FaArrowUp,
+  FaHeart,
 } from "react-icons/fa";
+import { smoothScrollTo } from "../../utils/scroll";
 
-function Footer(){
+function Footer() {
+  const year = new Date().getFullYear();
 
-const year=new Date().getFullYear();
+  return (
+    <footer className="footer">
+      <div className="wrapper">
+        <div className="footer-content">
+          <h2>
+            Saqlain
+            <span className="text-gradient"> Mushtaq</span>
+          </h2>
 
-return(
+          <p>
+            Frontend React Developer
+            <br />
+            Creating Premium Digital Experiences
+          </p>
 
-<footer
+          <div className="footer-social">
+            <a
+              href="https://github.com/Saqlainkhan12"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub />
+            </a>
 
-className="footer"
+            <a
+              href="https://www.linkedin.com/in/saqlain-khan-928826424"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin />
+            </a>
 
->
-
-<div className="wrapper">
-
-<div className="footer-content">
-
-<h2>
-
-Saqlain
-
-<span className="text-gradient">
-
- Mushtaq
-
-</span>
-
-</h2>
-
-<p>
-
-Frontend React Developer
-
-Creating Premium Digital Experiences
-
-</p>
-
-<div className="footer-social">
-
-<a
-
-href="https://github.com/Saqlainkhan12"
-
-target="_blank"
-
-rel="noopener noreferrer"
-
->
-
-<FaGithub/>
-
-</a>
-
-<a
-
-href="https://www.linkedin.com/in/saqlain-khan-928826424"
-
-target="_blank"
-
-rel="noopener noreferrer"
-
->
-
-<FaLinkedin/>
-
-</a>
-
-<a href="#home">
-
-<FaArrowUp/>
-
-</a>
-
-</div>
+            <a
+              href="#home"
+              onClick={(e) => {
+                e.preventDefault();
+                smoothScrollTo("home", 450);
+              }}
+              aria-label="Back to top"
+            >
+              <FaArrowUp />
+            </a>
+          </div>
 
 <div className="footer-line"></div>
 

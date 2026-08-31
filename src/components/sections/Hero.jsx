@@ -12,6 +12,7 @@ import {
 import AnimatedText from "../ui/AnimatedText";
 import GlassCard from "../ui/GlassCard";
 import MagneticButton from "../ui/MagneticButton";
+import { smoothScrollTo } from "../../utils/scroll";
 
 function Hero() {
 
@@ -80,23 +81,15 @@ function Hero() {
           </motion.p>
 
           <div className="hero-buttons">
-
-            <MagneticButton href="#projects">
-
+            <MagneticButton onClick={() => smoothScrollTo("projects", 450)}>
               View Work
-
               <FaArrowRight />
-
             </MagneticButton>
 
             <MagneticButton href="#">
-
               <FaDownload />
-
               Resume
-
             </MagneticButton>
-
           </div>
 
           <div className="hero-social">
