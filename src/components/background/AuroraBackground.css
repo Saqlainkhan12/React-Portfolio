@@ -49,7 +49,7 @@ position:absolute;
 
 border-radius:50%;
 
-filter:blur(140px);
+filter:blur(90px);
 
 opacity:.75;
 
@@ -401,7 +401,7 @@ transparent 70%
 
 );
 
-filter:blur(120px);
+filter:blur(80px);
 
 opacity:.9;
 

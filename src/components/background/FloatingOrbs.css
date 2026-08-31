@@ -62,9 +62,9 @@ rgba(255,255,255,.03)
 
 );
 
-backdrop-filter:blur(32px);
+backdrop-filter:blur(16px);
 
--webkit-backdrop-filter:blur(32px);
+-webkit-backdrop-filter:blur(16px);
 
 border:
 

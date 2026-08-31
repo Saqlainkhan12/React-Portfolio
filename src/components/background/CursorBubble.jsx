@@ -1,88 +1,130 @@
 import "./CursorBubble.css";
-
 import { useEffect, useRef } from "react";
 
 function CursorBubble() {
+  const bubbleRef = useRef(null);
+  const isInitialized = useRef(false);
+  const isVisible = useRef(true);
 
-const bubbleRef = useRef(null);
+  const mouse = useRef({
+    x: -100,
+    y: -100,
+  });
 
-const mouse = useRef({
-x: window.innerWidth / 2,
-y: window.innerHeight / 2,
-});
+  const position = useRef({
+    x: -100,
+    y: -100,
+  });
 
-const position = useRef({
-x: window.innerWidth / 2,
-y: window.innerHeight / 2,
-});
+  useEffect(() => {
+    const getZoomFactor = () => {
+      const root = document.getElementById("root");
+      if (!root) return 1;
+      const zoom = parseFloat(window.getComputedStyle(root).zoom);
+      return isNaN(zoom) || zoom <= 0 ? 1 : zoom;
+    };
 
-useEffect(() => {
+    const handleMouseMove = (e) => {
+      const zoom = getZoomFactor();
+      const targetX = e.clientX / zoom;
+      const targetY = e.clientY / zoom;
 
-const handleMouseMove = (e) => {
+      mouse.current.x = targetX;
+      mouse.current.y = targetY;
 
-mouse.current.x = e.clientX;
+      if (!isInitialized.current) {
+        position.current.x = targetX;
+        position.current.y = targetY;
+        isInitialized.current = true;
+        if (bubbleRef.current) {
+          bubbleRef.current.style.opacity = "1";
+        }
+      }
+    };
 
-mouse.current.y = e.clientY;
+    const handleMouseEnter = () => {
+      isVisible.current = true;
+      if (bubbleRef.current) {
+        bubbleRef.current.style.opacity = "1";
+      }
+    };
 
-};
+    const handleMouseLeave = () => {
+      isVisible.current = false;
+      if (bubbleRef.current) {
+        bubbleRef.current.style.opacity = "0";
+      }
+    };
 
-window.addEventListener(
-"mousemove",
-handleMouseMove
-);
+    // Hover effect over interactive elements
+    const handleMouseOver = (e) => {
+      const target = e.target;
+      if (
+        target.closest("a") ||
+        target.closest("button") ||
+        target.closest("input") ||
+        target.closest("textarea") ||
+        target.closest(".magnetic-btn") ||
+        target.closest("[role='button']")
+      ) {
+        if (bubbleRef.current) {
+          bubbleRef.current.classList.add("hovering");
+        }
+      } else {
+        if (bubbleRef.current) {
+          bubbleRef.current.classList.remove("hovering");
+        }
+      }
+    };
 
-let animationFrame;
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
+    document.addEventListener("mouseenter", handleMouseEnter);
+    document.addEventListener("mouseleave", handleMouseLeave);
 
-const animate = () => {
+    let animationFrame;
 
-position.current.x +=
-(mouse.current.x - position.current.x) * 0.12;
+    // Fast responsive lerp (0.35 factor for instant, silky-smooth response without lag)
+    const LERP_FACTOR = 0.35;
 
-position.current.y +=
-(mouse.current.y - position.current.y) * 0.12;
+    const animate = () => {
+      if (isInitialized.current) {
+        const dx = mouse.current.x - position.current.x;
+        const dy = mouse.current.y - position.current.y;
 
-if (bubbleRef.current) {
+        // Snappy interpolation
+        position.current.x += dx * LERP_FACTOR;
+        position.current.y += dy * LERP_FACTOR;
 
-bubbleRef.current.style.transform = `
-translate3d(
-${position.current.x - 18}px,
-${position.current.y - 18}px,
-0
-)
-`;
+        if (bubbleRef.current) {
+          bubbleRef.current.style.transform = `translate3d(${position.current.x - 18}px, ${position.current.y - 18}px, 0)`;
+        }
+      }
 
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseover", handleMouseOver);
+      document.removeEventListener("mouseenter", handleMouseEnter);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      cancelAnimationFrame(animationFrame);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={bubbleRef}
+      className="cursor-bubble"
+      style={{ opacity: 0 }}
+      aria-hidden="true"
+    >
+      <div className="cursor-core"></div>
+    </div>
+  );
 }
 
-animationFrame =
-requestAnimationFrame(animate);
-
-};
-
-animate();
-  return () => {
-
-    window.removeEventListener(
-      "mousemove",
-      handleMouseMove
-    );
-
-    cancelAnimationFrame(animationFrame);
-
-  };
-
-}, []);
-
-return (
-
-  <div
-    ref={bubbleRef}
-    className="cursor-bubble"
-  >
-    <div className="cursor-core"></div>
-  </div>
-
-);
-
-}
-
-export default CursorBubble;
+export default CursorBubble;
